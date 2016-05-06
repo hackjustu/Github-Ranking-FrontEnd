@@ -20,16 +20,22 @@
     <!-- AngularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
 
+
+    <link rel="stylesheet" href="http://jtblin.github.io/angular-chart.js/dist/angular-chart.css" />
+    <script src="http://jtblin.github.io/angular-chart.js/bower_components/Chart.js/Chart.js"></script>
+    <script src="http://jtblin.github.io/angular-chart.js/dist/angular-chart.js"></script>
+
     <!-- ChartJS -->
-    <script src="js/chart.js"></script>
+    <!--    <script src="js/chart.js"></script>-->
 
     <!-- Angular Chart -->
-    <script src="js/angular-chart/angular-chart.js"></script>
-    <link rel="stylesheet" href="js/angular-chart/angular-chart.css">
+    <!--    <script src="js/angular-chart/angular-chart.js"></script>-->
+    <!--    <link rel="stylesheet" href="js/angular-chart/angular-chart.css">-->
+
+    <link rel="stylesheet" href="css/footer-basic-centered.css">
 
     <script src="js/app.js"></script>
     <link rel="stylesheet" href="css/custom.css">
-    <link rel="stylesheet" href="css/footer-basic-centered.css">
 
 </head>
 
@@ -38,9 +44,9 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-<a class="navbar-brand" href="#">
-    <img alt="Brand" src="favicon.ico" , width="25px">
-</a>
+                <a class="navbar-brand" href="#">
+                    <img alt="Brand" src="favicon.ico" , width="25px">
+                </a>
                 <p class="navbar-text">太阁极客榜</p>
             </div>
         </div>
@@ -90,31 +96,45 @@ right: 10px;">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th style="text-align : left">Name</th>
+                        <th style=" text-align : left ">Name</th>
                         <th>Medal</th>
-
                         <th>Total</th>
                         <th>Push</th>
                         <th>PR</th>
                         <th>Create</th>
                         <th>Fork</th>
+                        <!--<th style="width: 30px">button</th>-->
                     </tr>
                 </thead>
                 <tbody ng-cloak>
-                    <tr ng-repeat="member in members | orderBy:'-'+order">
-
-                        <td align="center">
+                    <tr ng-repeat-start="member in members | orderBy: '-'+order" ng-click="member.expanded=!member.expanded" ng-init="member.expanded=false">
+                        <td align="center" style="vertical-align:middle">
                             <b><i>{{ $index + 1 }}</i></b>
                         </td>
-                        <td><img ng-src="{{member.avatar_url}}" height="35px" style="margin-right: 10px"><a ng-href="{{member.html_url}}"> {{ member.login }}</a></td>
-                        <td class="medal" ng-if="member.Total >= 50"><img ng-src="./resource/gold.png" height="35px" align="center"></td>
+                        <td><img ng-src="{{member.avatar_url}} " height="35px" style="margin-right: 10px"><a ng-href="{{member.html_url}} "> {{ member.login }}</a></td>
+                        <td class="medal " ng-if="member.Total>= 50"><img ng-src="./resource/gold.png" height="35px" align="center"></td>
                         <td class="medal" ng-if="member.Total<50 && member.Total>20"><img ng-src="./resource/silver.png" height="30px" align="center"></td>
                         <td class="medal" ng-if="member.Total<20"><img ng-src="./resource/bronze.png" height="30px" align="center"></td>
-                        <td align="center"><b>{{ member.Total }}</b></td>
-                        <td align="center">{{ member.PushEvent }}</td>
-                        <td align="center">{{ member.PullRequestEvent }}</td>
-                        <td align="center">{{ member.CreateEvent }}</td>
-                        <td align="center">{{ member.ForkEvent }}</td>
+                        <td align="center" style="vertical-align:middle"><b>{{ member.Total }}</b></td>
+                        <td align="center" style="vertical-align:middle">{{ member.PushEvent }}</td>
+                        <td align="center" style="vertical-align:middle">{{ member.PullRequestEvent }}</td>
+                        <td align="center" style="vertical-align:middle">{{ member.CreateEvent }}</td>
+                        <td align="center" style="vertical-align:middle">{{ member.ForkEvent }}</td>
+                    </tr>
+                    <tr class="details" ng-if="member.expanded" ng-repeat-end="">
+                        <td colspan="8">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        One of three columns
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-legend="true" chart-series="series" chart-click="onClick">
+                                        </canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>

@@ -4,12 +4,12 @@ app.controller('main_controller', ['$scope', function ($scope) {
 
     var FirebaseRef = new Firebase("https://bittiger-ranking.firebaseio.com/");
     var first_launch = true;
+    $scope.expended = false;
 
     FirebaseRef.child('user_events').on("value", function (snapshot) {
 
         $scope.members = snapshot.val()['events'];
         $scope.list_created_time = snapshot.val()['created_time'];
-        $scope.$apply();
 
         if (!first_launch) {
             bootstrap_alert('Ranking is just updated at ' + $scope.list_created_time);
@@ -17,6 +17,9 @@ app.controller('main_controller', ['$scope', function ($scope) {
         } else {
             first_launch = false;
         }
+
+        $scope.$apply();
+
     }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
     });
@@ -51,4 +54,15 @@ app.controller('main_controller', ['$scope', function ($scope) {
             angular.element("#success-alert").replaceWith(divClone.clone());
         });
     }
+
+    // testing area
+    $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
+    $scope.series = ['Series A', 'Series B'];
+    $scope.data = [
+    [65, 59, 80, 81, 56, 55, 40],
+    [28, 48, 40, 19, 86, 27, 90]
+  ];
+    $scope.onClick = function (points, evt) {
+        console.log(points, evt);
+    };
 }]);
