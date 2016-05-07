@@ -34,6 +34,9 @@
 
     <link rel="stylesheet" href="css/footer-basic-centered.css">
 
+    <!-- typicons -->
+    <link rel='stylesheet' href='bower_components/typicons/src/font/typicons.min.css' />
+
     <script src="js/app.js"></script>
     <link rel="stylesheet" href="css/custom.css">
 
@@ -48,6 +51,7 @@
                     <img alt="Brand" src="favicon.ico" , width="25px">
                 </a>
                 <p class="navbar-text">太阁极客榜</p>
+
             </div>
         </div>
     </nav>
@@ -59,11 +63,6 @@
 
                 <div class='bs-component'>
                     <div class='jumbotron'>
-                        <!--
-                        <h1>太阁<b>极客榜</b></h1> <img class="big_logo" ng-src="./resource/coc.png" height="125px" style="position: absolute; top: 10px;
-right: 10px;">
--->
-
                         <h1>太阁<b>极客榜</b></h1> <img class="big_logo" height="250px" ng-src="./resource/coc.png" style="position: absolute; top: 10px;
 right: 10px;">
                         <p>
@@ -90,13 +89,12 @@ right: 10px;">
         </div>
 
         <div id="alert_placeholder"></div>
-
         <div class="table-responsive">
             <table class="table">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th style=" text-align : left ">Name</th>
+                        <th style="text-align : left">#</th>
+                        <th style="text-align : left">Name</th>
                         <th>Medal</th>
                         <th>Total</th>
                         <th>Push</th>
@@ -108,8 +106,15 @@ right: 10px;">
                 </thead>
                 <tbody ng-cloak>
                     <tr ng-repeat-start="member in members | orderBy: '-'+order" ng-click="member.expanded=!member.expanded" ng-init="member.expanded=false">
-                        <td align="center" style="vertical-align:middle">
-                            <b><i>{{ $index + 1 }}</i></b>
+                        <td align="left" style="vertical-align: middle;">
+
+                            <div>
+                                <b><i>{{ $index + 1 }}.</i></b>
+                                <span ng-if="member.ranking_change < 0" class="typcn typcn-arrow-up-thick" style="font-size: 70%; color:#2E7D32; padding: 5px;"><b>{{ -member.ranking_change }}</b></span>
+                                <span ng-if="member.ranking_change == 0" class="typcn typcn-equals" style="font-size: 70%; color:#FFB300; padding: 5px;"></span>
+                                <span ng-if="member.ranking_change > 0" class="typcn typcn-arrow-down-thick" style="font-size: 70%; color:#B71C1C; padding: 5px;"><b>{{ member.ranking_change }}</b></span>
+                                <span ng-if="member.ranking_change=='new'" style="font-size: 70%; color:#2196F3; padding: 5px;"><b>new</b></span>
+                            </div>
                         </td>
                         <td><img ng-src="{{member.avatar_url}} " height="35px" style="margin-right: 10px"><a ng-href="{{member.html_url}} "> {{ member.login }}</a></td>
                         <td class="medal " ng-if="member.Total>= 50"><img ng-src="./resource/gold.png" height="35px" align="center"></td>
@@ -146,6 +151,8 @@ right: 10px;">
         <p class="footer-company-name">No Rights Reserved @2016 hackjustu.ninja</p>
 
     </footer>
+
+    <!-- 3rd party plugin -->
 
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57290b8c27d4382b"></script>
