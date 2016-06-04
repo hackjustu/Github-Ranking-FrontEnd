@@ -120,7 +120,7 @@ We adopt a medal system for fun, beacasue we love gaming~~
 ## License
 MIT © [Cosmo](https://github.com/hackjustu)
 
-## Repository information
+## Project Information
 - category: full stack
 - team: Fighting Falcon
 - description: A real-time ranking board for BitTiger's Github members.
