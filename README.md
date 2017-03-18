@@ -108,7 +108,7 @@ We adopt a medal system for fun, beacasue we love gaming~~
 - [ ] Better crawler for more user/repository information
 
 ## Team Members
-||
+| |
 |:--:|
 |![Cosmo](http://i.imgur.com/m9UhjwU.jpg)|
 |[Cosmo](https://github.com/hackjustu)|
