@@ -117,7 +117,7 @@ We adopt a medal system for fun, beacasue we love gaming~~
 - [Freepik](http://www.freepik.com/) contributes several cool free images.
 
 ## License
-MIT © [Cosmo](https://github.com/hackjustu)
+[MIT ©Cosmo](./LICENSE)
 
 ## Project Information
 - category: full stack
